@@ -1,4 +1,4 @@
-# Version: 1.0.0
+# Version: 1.0.1
 
 export VISUAL=nano
 export EDITOR="$VISUAL"
@@ -21,8 +21,6 @@ check_for_updates() {
     if [ "$local_version" != "$remote_version" ]; then
         echo "An update is available for your .bash_profile (Version: $remote_version)."
         echo "Run 'update_bash_profile' to update."
-    else
-        echo "Your .bash_profile (Version: $local_version) is up to date."
     fi
 }
 
