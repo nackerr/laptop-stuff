@@ -19,6 +19,8 @@ check_for_updates() {
     echo $local_version
     echo $remote_version
 
+    echo "TEST"
+
     if [ "$local_version" != "$remote_version" ]; then
         echo "An update is available for your .bash_profile."
         echo "Run 'update_bash_profile' to update."
