@@ -3,8 +3,6 @@ export EDITOR="$VISUAL"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export THEOS=~/theos
 alias python='python3'
-alias checkbashupdate='check_for_updates'
-alias updatebash='update_bash_profile'
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 #!/bin/bash
@@ -25,6 +23,9 @@ check_for_updates() {
         echo "Your .bash_profile is up to date."
     fi
 }
+
+alias checkbashupdate='check_for_updates'
+alias updatebash='update_bash_profile'
 
 update_weather_and_ip() {
     while true; do
