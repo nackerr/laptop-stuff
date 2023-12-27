@@ -1,3 +1,5 @@
+# Version: 1.0.0
+
 export VISUAL=nano
 export EDITOR="$VISUAL"
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -15,11 +17,6 @@ update_bash_profile() {
 check_for_updates() {
     local local_version=$(md5 -q ~/.bash_profile)
     local remote_version=$(curl -s https://raw.githubusercontent.com/nackerr/laptop-stuff/main/.bash_profile | md5 -q)
-
-    echo $local_version
-    echo $remote_version
-
-    echo "TEST"
 
     if [ "$local_version" != "$remote_version" ]; then
         echo "An update is available for your .bash_profile."
