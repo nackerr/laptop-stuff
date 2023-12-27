@@ -15,14 +15,14 @@ update_bash_profile() {
 }
 
 check_for_updates() {
-    local local_version=$(md5 -q ~/.bash_profile)
-    local remote_version=$(curl -s https://raw.githubusercontent.com/nackerr/laptop-stuff/main/.bash_profile | md5 -q)
+    local local_version=$(grep '^# Version:' ~/.bash_profile | cut -d ' ' -f 3)
+    local remote_version=$(curl -s https://raw.githubusercontent.com/nackerr/laptop-stuff/main/.bash_profile | grep '^# Version:' | cut -d ' ' -f 3)
 
     if [ "$local_version" != "$remote_version" ]; then
-        echo "An update is available for your .bash_profile."
+        echo "An update is available for your .bash_profile (Version: $remote_version)."
         echo "Run 'update_bash_profile' to update."
     else
-        echo "Your .bash_profile is up to date."
+        echo "Your .bash_profile (Version: $local_version) is up to date."
     fi
 }
 
