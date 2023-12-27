@@ -89,7 +89,7 @@ echo "$(tput setaf 2)
 
 Uptime.............: ${uptime_formatted}
 Memory.............: $(memory_usage)
-Running Processes..: $(ps ax | wc -l | tr -d " ")
+Processes #........: $(ps ax | wc -l | tr -d " ")
 LAN IP.............: $(get_lan_ip)
 Tunnel IP..........: $(get_tunnel_ip)
 Public IP..........: $public_ip
