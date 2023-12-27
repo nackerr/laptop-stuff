@@ -3,10 +3,28 @@ export EDITOR="$VISUAL"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export THEOS=~/theos
 alias python='python3'
-
+alias checkbashupdate='check_for_updates'
+alias updatebash='update_bash_profile'
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 #!/bin/bash
+
+update_bash_profile() {
+    curl -s -o ~/.bash_profile https://raw.githubusercontent.com/nackerr/laptop-stuff/main/.bash_profile
+    echo "Your .bash_profile has been updated. Please restart your terminal."
+}
+
+check_for_updates() {
+    local local_version=$(md5 -q ~/.bash_profile)
+    local remote_version=$(curl -s https://raw.githubusercontent.com/nackerr/laptop-stuff/main/.bash_profile | md5 -q)
+
+    if [ "$local_version" != "$remote_version" ]; then
+        echo "An update is available for your .bash_profile."
+        echo "Run 'update_bash_profile' to update."
+    else
+        echo "Your .bash_profile is up to date."
+    fi
+}
 
 update_weather_and_ip() {
     while true; do
@@ -77,5 +95,6 @@ Public IP..........: $public_ip
 Weather............: $weather
 $(tput sgr0)"
 
+check_for_updates
 
 PS1="\[\e[1;32m\][\u@\h \W]\[\e[1;34m\] @ \$(date +'%I:%M:%S %p')\[\e[0m\]\n$ "
