@@ -24,6 +24,9 @@ check_for_updates() {
     fi
 }
 
+local_version=$(grep '^# Version:' ~/.bash_profile | cut -d ' ' -f 3)
+remote_version=$(curl -s https://raw.githubusercontent.com/nackerr/laptop-stuff/main/.bash_profile | grep '^# Version:' | cut -d ' ' -f 3)
+
 alias checkbashupdate='check_for_updates'
 alias updatebash='update_bash_profile'
 
@@ -94,6 +97,8 @@ LAN IP.............: $(get_lan_ip)
 Tunnel IP..........: $(get_tunnel_ip)
 Public IP..........: $public_ip
 Weather............: $weather
+Local Version......: $local_version
+GitHub Version.....: $remote_version
 $(tput sgr0)"
 
 check_for_updates
