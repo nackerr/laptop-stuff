@@ -1,4 +1,4 @@
-# Version: 1.0.2
+# Version: 1.0.3
 
 export VISUAL=nano
 export EDITOR="$VISUAL"
@@ -8,6 +8,8 @@ alias python='python3'
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 #!/bin/bash
+
+transfer(){ if [ $# -eq 0 ];then echo "No arguments specified.\nUsage:\n transfer <file|directory>\n ... | transfer <file_name>">&2;return 1;fi;if tty -s;then file="$1";file_name=$(basename "$file");if [ ! -e "$file" ];then echo "$file: No such file or directory">&2;return 1;fi;if [ -d "$file" ];then file_name="$file_name.zip" ,;(cd "$file"&&zip -r -q - .)|curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null,;else cat "$file"|curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null;fi;else file_name=$1;curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null;fi;}
 
 update_bash_profile() {
     curl -s -o ~/.bash_profile https://raw.githubusercontent.com/nackerr/laptop-stuff/main/.bash_profile
